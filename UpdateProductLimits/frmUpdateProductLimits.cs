@@ -202,16 +202,16 @@ namespace TTUSAPI_Samples
                     {
                         TTUSAPI.DataObjects.AccountGroupProfile acctGroupProfile = new TTUSAPI.DataObjects.AccountGroupProfile(acctGroup);
 
-                        TTUSAPI.DataObjects.ProductLimitProfile productLimit;
+                        TTUSAPI.DataObjects.AccountGroupProductLimitProfile productLimit;
                         bool productLimitSet = false;
-                        foreach (TTUSAPI.DataObjects.ProductLimit prodLimit in acctGroupProfile.ProductLimits.Values) //Loop through product limits associated with the account
+                        foreach (TTUSAPI.DataObjects.AccountGroupProductLimit prodLimit in acctGroupProfile.ProductLimits.Values) //Loop through product limits associated with the account
                         {
                             //Replace account product limits that match ones in the update file
                             if (prodLimit.GatewayID == gatewayId && prodLimit.ProductTypeID == productTypeId && prodLimit.Product.ToUpper().Equals(txtProduct.Text.ToUpper()))
                             {
-                                productLimit = new TTUSAPI.DataObjects.ProductLimitProfile(prodLimit); //Create copy of Product Limit
-                                productLimit.MaxPosition = maxPos; //Set Maximum Position
-                                productLimit.MaxLongShort = maxLongShort; // Set Maximum Long/Short Position
+                                productLimit = new TTUSAPI.DataObjects.AccountGroupProductLimitProfile(prodLimit); //Create copy of Product Limit
+                                productLimit.MaxPositionPerContract = maxPos; //Set Maximum Position
+                                productLimit.MaxProductLongShort = maxLongShort; // Set Maximum Long/Short Position
                                 acctGroupProfile.AddProductLimit(productLimit); //Add product limit to account
                                 productLimitSet = true;
                                 break;
@@ -220,14 +220,15 @@ namespace TTUSAPI_Samples
                         //Create new product limits if they don't currently exist for the account
                         if (productLimitSet == false)
                         {
-                            productLimit = new TTUSAPI.DataObjects.ProductLimitProfile(); //Create new Product Limit
+                            productLimit = new TTUSAPI.DataObjects.AccountGroupProductLimitProfile(); //Create new Product Limit
                             //Assign values to product limit from update file object
                             productLimit.GatewayID = gatewayId;
                             productLimit.Product = txtProduct.Text;
                             productLimit.ProductTypeID = productTypeId;
-                            productLimit.MaxPosition = maxPos;
-                            productLimit.MaxLongShort = maxLongShort;
-                            productLimit.TradingAllowed = true;
+                            productLimit.MaxPositionPerContract = maxPos;
+                            productLimit.MaxProductLongShort = maxLongShort;
+                            productLimit.AllowTradingOutrights = true;
+                            productLimit.AllowTradingSpreads = true;
                             acctGroupProfile.AddProductLimit(productLimit); //Add product limit to account
                         }
 

@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="datatable_net">
-      <HintPath>..\..\..\..\..\tt\tt_user_setup\datatable_net.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\tt\tt_user_setup\datatable_net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,7 +47,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="TTUSAPI">
-      <HintPath>..\..\tt\tt_user_setup\TTUSAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\tt\tt_user_setup\TTUSAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
